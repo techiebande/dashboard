@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="output.css" />
+    <title>Document</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-funnel"></script>
+  </head>
+  <body class="h-full">
+    <nav
+      class="w-full min-h-[63px] flex items-center justify-between bg-primary pr-4 sticky top-0 z-50"
+    >
+      <img src="./images/logo.png" />
+      <div class="flex flex-col lg:flex-row items-center gap-5">
+        <div class="flex items-center gap-5">
+          <button
+            class="border-db-orange border text-db-orange text-[15px] rounded-[6px] p-[11px] bg-secondary font-segoeSemibold font-[500] truncate"
+          >
+            Switch to Client Area
+          </button>
+          <button
+            class="bg-[#23BF08] flex items-center gap-3 text-[16px] p-[11px] text-white rounded-[6px] font-segoeRegular font-[400] truncate"
+          >
+            <img src="./images/Chart_Line.svg" class="w-[18px] h-[18px]" />
+            Switch to trade Room
+          </button>
+        </div>
+        <div class="flex items-center gap-5 ml-auto lg:ml-0">
+          <img src="./images/search-icon.svg" class="w-5 h-5" />
+          <img src="./images/alarm-icon.svg" class="w-5 h-5" />
+          <img src="./images/plus-circle.svg" class="w-5 h-5" />
+          <span class="text-db-text font-segoeRegular">Edgy tray</span>
+          <img src="./images/user-circle.svg" class="w-5 h-5" />
+        </div>
+      </div>
+    </nav>
+    <div
+      class="relative bg-[url('./images/dashboard-bg-image.svg')] bg-cover bg-center flex"
+    >
+      <div
+        class="absolute w-full h-full top-0 bg-[rgba(0,0,0,0.15)] -z-30"
+      ></div>
+      <aside
+        class="bg-primary min-w-[170px] h-sidebarHeight overflow-y-auto sticky top-[63px] z-50"
+      >
+        <div
+          class="px-5 py-[10px] flex items-center gap-1 bg-[#1E2537] border-l-[2px] border-l-db-orange"
+        >
+          <img src="./images/board-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Board</span
+          >
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/settings-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500] relative"
+            >Settings
+            <i
+              class="fa fa-chevron-right fa-xs absolute top-[10px] -right-[10px] text-db-text-primary"
+            ></i>
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/dev-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs text-nowrap font-[500] relative"
+            >Dev Settings
+            <i
+              class="absolute top-[10px] -right-[10px] fa fa-chevron-right fa-xs text-db-text-primary"
+            ></i>
+          </span>
+        </div>
+
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/leads-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Leads
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/customers-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500] relative"
+            >Customers
+            <i
+              class="fa fa-chevron-right fa-xs absolute top-[10px] -right-[10px] text-db-text-primary"
+            ></i>
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/assets-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Assets
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/affiliate-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Affiliate Market
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/managers-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Managers
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/admins-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Admins
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/transactions-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Transactions
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/stats-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Trade Statistics
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/activities-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Activities
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/panel-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Service Panel
+          </span>
+        </div>
+        <div class="px-5 py-[10px] flex items-center gap-1">
+          <img src="./images/logout-icon.svg" class="w-6 h-6" />
+          <span
+            class="text-db-text-primary font-segoeSemibold text-xs font-[500]"
+            >Logout
+          </span>
+        </div>
+      </aside>
+      <main class="p-5 w-full">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <div
+            class="flex items-center justify-between rounded-[20px] bg-white shadow-cardShadow px-4 py-6"
+          >
+            <div>
+              <p class="text-[#787878] text-[13px] font-segoeLight">
+                Total users
+              </p>
+              <span class="text=[18px] text-[#393939] poppins-semibold"
+                >12,094</span
+              >
+            </div>
+            <div
+              class="bg-[#00D9B71A] rounded-[18px] w-[53px] h-[49px] flex flex-col items-center justify-center"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.0005 7L14.1543 12.9375C14.0493 13.0441 13.9962 13.0976 13.9492 13.1396C13.1899 13.8193 12.0416 13.8193 11.2822 13.1396C11.2352 13.0976 11.1817 13.0442 11.0767 12.9375C10.9716 12.8308 10.9191 12.7774 10.8721 12.7354C10.1127 12.0557 8.96397 12.0557 8.20461 12.7354C8.15771 12.7773 8.10532 12.8305 8.00078 12.9367L4 17M20.0005 7L20 13M20.0005 7H14"
+                  stroke="#00D9B7"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="text-[#44444F] text-xs poppins-regular">25%</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between rounded-[20px] bg-white shadow-cardShadow px-4 py-6"
+          >
+            <div>
+              <p class="text-[#787878] text-[13px] font-segoeLight font-[200]">
+                Trading Pnl
+              </p>
+              <span class="text=[18px] text-[#393939] poppins-semibold"
+                >$24,457</span
+              >
+            </div>
+            <div
+              class="bg-[#DC35451A] rounded-[18px] w-[53px] h-[49px] flex flex-col items-center justify-center"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.0005 17L14.1543 11.0625C14.0493 10.9559 13.9962 10.9024 13.9492 10.8604C13.1899 10.1807 12.0416 10.1807 11.2822 10.8604C11.2352 10.9024 11.1817 10.9558 11.0767 11.0625C10.9716 11.1692 10.9191 11.2226 10.8721 11.2646C10.1127 11.9443 8.96397 11.9443 8.20461 11.2646C8.15759 11.2226 8.10506 11.1692 8 11.0625L4 7M20.0005 17L20 11M20.0005 17H14"
+                  stroke="#DC3545"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+
+              <p class="text-[#44444F] text-xs poppins-regular">25%</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between rounded-[20px] bg-white shadow-cardShadow px-4 py-6"
+          >
+            <div>
+              <p class="text-[#787878] text-[13px] font-segoeLight font-[200]">
+                Leverage Open Volume
+              </p>
+              <span class="text=[18px] text-[#393939] poppins-semibold"
+                >4,982</span
+              >
+            </div>
+            <div
+              class="bg-[#00D9B71A] rounded-[18px] w-[53px] h-[49px] flex flex-col items-center justify-center"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.0005 7L14.1543 12.9375C14.0493 13.0441 13.9962 13.0976 13.9492 13.1396C13.1899 13.8193 12.0416 13.8193 11.2822 13.1396C11.2352 13.0976 11.1817 13.0442 11.0767 12.9375C10.9716 12.8308 10.9191 12.7774 10.8721 12.7354C10.1127 12.0557 8.96397 12.0557 8.20461 12.7354C8.15771 12.7773 8.10532 12.8305 8.00078 12.9367L4 17M20.0005 7L20 13M20.0005 7H14"
+                  stroke="#00D9B7"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="text-[#44444F] text-xs poppins-regular">25%</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between rounded-[20px] bg-white shadow-cardShadow px-4 py-6"
+          >
+            <div>
+              <p class="text-[#787878] text-[13px] font-segoeLight font-[200]">
+                Leverage Volume
+              </p>
+              <span class="text=[18px] text-[#393939] poppins-semibold"
+                >874</span
+              >
+            </div>
+            <div
+              class="bg-[#DC35451A] rounded-[18px] w-[53px] h-[49px] flex flex-col items-center justify-center"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.0005 17L14.1543 11.0625C14.0493 10.9559 13.9962 10.9024 13.9492 10.8604C13.1899 10.1807 12.0416 10.1807 11.2822 10.8604C11.2352 10.9024 11.1817 10.9558 11.0767 11.0625C10.9716 11.1692 10.9191 11.2226 10.8721 11.2646C10.1127 11.9443 8.96397 11.9443 8.20461 11.2646C8.15759 11.2226 8.10506 11.1692 8 11.0625L4 7M20.0005 17L20 11M20.0005 17H14"
+                  stroke="#DC3545"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+
+              <p class="text-[#44444F] text-xs poppins-regular">25%</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between rounded-[20px] bg-white shadow-cardShadow px-4 py-6"
+          >
+            <div>
+              <p class="text-[#787878] text-[13px] font-segoeLight font-[200]">
+                FTD
+              </p>
+              <span class="text=[18px] text-[#393939] poppins-semibold"
+                >541,000</span
+              >
+            </div>
+            <div
+              class="bg-[#00D9B71A] rounded-[18px] w-[53px] h-[49px] flex flex-col items-center justify-center"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.0005 7L14.1543 12.9375C14.0493 13.0441 13.9962 13.0976 13.9492 13.1396C13.1899 13.8193 12.0416 13.8193 11.2822 13.1396C11.2352 13.0976 11.1817 13.0442 11.0767 12.9375C10.9716 12.8308 10.9191 12.7774 10.8721 12.7354C10.1127 12.0557 8.96397 12.0557 8.20461 12.7354C8.15771 12.7773 8.10532 12.8305 8.00078 12.9367L4 17M20.0005 7L20 13M20.0005 7H14"
+                  stroke="#00D9B7"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="text-[#44444F] text-xs poppins-regular">25%</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between rounded-[20px] bg-white shadow-cardShadow px-4 py-6"
+          >
+            <div>
+              <p class="text-[#787878] text-[13px] font-segoeLight font-[200]">
+                Withdrawal
+              </p>
+              <span class="text=[18px] text-[#393939] poppins-semibold"
+                >$8,458</span
+              >
+            </div>
+            <div
+              class="bg-[#DC35451A] rounded-[18px] w-[53px] h-[49px] flex flex-col items-center justify-center"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.0005 17L14.1543 11.0625C14.0493 10.9559 13.9962 10.9024 13.9492 10.8604C13.1899 10.1807 12.0416 10.1807 11.2822 10.8604C11.2352 10.9024 11.1817 10.9558 11.0767 11.0625C10.9716 11.1692 10.9191 11.2226 10.8721 11.2646C10.1127 11.9443 8.96397 11.9443 8.20461 11.2646C8.15759 11.2226 8.10506 11.1692 8 11.0625L4 7M20.0005 17L20 11M20.0005 17H14"
+                  stroke="#DC3545"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+
+              <p class="text-[#44444F] text-xs poppins-regular">25%</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between rounded-[20px] bg-white shadow-cardShadow px-4 py-6"
+          >
+            <div>
+              <p class="text-[#787878] text-[13px] font-segoeLight font-[200]">
+                New Deposit/FTD
+              </p>
+              <span class="text=[18px] text-[#393939] poppins-semibold"
+                >500</span
+              >
+            </div>
+            <div
+              class="bg-[#00D9B71A] rounded-[18px] w-[53px] h-[49px] flex flex-col items-center justify-center"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.0005 7L14.1543 12.9375C14.0493 13.0441 13.9962 13.0976 13.9492 13.1396C13.1899 13.8193 12.0416 13.8193 11.2822 13.1396C11.2352 13.0976 11.1817 13.0442 11.0767 12.9375C10.9716 12.8308 10.9191 12.7774 10.8721 12.7354C10.1127 12.0557 8.96397 12.0557 8.20461 12.7354C8.15771 12.7773 8.10532 12.8305 8.00078 12.9367L4 17M20.0005 7L20 13M20.0005 7H14"
+                  stroke="#00D9B7"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="text-[#44444F] text-xs poppins-regular">25%</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between rounded-[20px] bg-white shadow-cardShadow px-4 py-6"
+          >
+            <div>
+              <p class="text-[#787878] text-[13px] font-segoeLight font-[200]">
+                Total Deposit
+              </p>
+              <span class="text=[18px] text-[#393939] poppins-semibold"
+                >$568,234</span
+              >
+            </div>
+            <div
+              class="bg-[#DC35451A] rounded-[18px] w-[53px] h-[49px] flex flex-col items-center justify-center"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.0005 17L14.1543 11.0625C14.0493 10.9559 13.9962 10.9024 13.9492 10.8604C13.1899 10.1807 12.0416 10.1807 11.2822 10.8604C11.2352 10.9024 11.1817 10.9558 11.0767 11.0625C10.9716 11.1692 10.9191 11.2226 10.8721 11.2646C10.1127 11.9443 8.96397 11.9443 8.20461 11.2646C8.15759 11.2226 8.10506 11.1692 8 11.0625L4 7M20.0005 17L20 11M20.0005 17H14"
+                  stroke="#DC3545"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+
+              <p class="text-[#44444F] text-xs poppins-regular">25%</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 mt-5 gap-[20px]">
+          <div class="bg-white rounded-[20px] shadow-cardShadow p-5">
+            <div class="flex justify-between items-center">
+              <p class="poppins-semibold text-sm">Marketing</p>
+              <div
+                class="flex items-center justify-between border-b px-8 gap-14"
+              >
+                <p class="poppins-medium text-[#6E6E6E] text-[13px]">Daily</p>
+                <p class="poppins-medium text-[#6E6E6E] text-[13px]">Weekly</p>
+                <p
+                  class="poppins-medium text-[13px] text-db-orange border-b border-db-orange px-4"
+                >
+                  Monthly
+                </p>
+              </div>
+            </div>
+            <div class="flex mt-4">
+              <canvas
+                id="funnelChart"
+                style="width: 100%; max-width: 700px"
+              ></canvas>
+              <div></div>
+            </div>
+          </div>
+          <div class="bg-white rounded-[20px] shadow-cardShadow">
+            <div class="bg-white rounded-[20px] shadow-cardShadow p-5">
+              <div
+                class="flex justify-between lg:items-center flex-col lg:flex-row"
+              >
+                <p class="poppins-semibold text-sm">Geographical Insight</p>
+                <div class="flex items-center justify-between gap-5">
+                  <button
+                    class="bg-db-orange flex items-center gap-1 rounded-[20px] px-5 py-[8px] text-white poppins-medium text-xs"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    Save Report
+                  </button>
+                  <select
+                    class="bg-white border border-db-orange rounded-[20px] px-5 py-[6px] active:outline-none outline-none poppins-medium text-xs"
+                    name=""
+                    id=""
+                  >
+                    <option value="highest">Highest</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="w-[192px] border-collapse">
+                  <div
+                    class="pl-5 pr-[58px] py-3 w-[192px] flex items-center justify-between"
+                  >
+                    <span class="text-[#000000] poppins-medium text-xs"
+                      >LOCATION</span
+                    >
+                    <span class="text-[#000000] poppins-medium text-xs"
+                      >USERS</span
+                    >
+                  </div>
+                  <div class="border">
+                    <div
+                      class="relative bg-[#F5F5F5] pl-5 pr-[58px] py-3 w-[192px] flex items-center justify-between"
+                    >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >NGN</span
+                      >
+
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >648</span
+                      >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="absolute right-4 top-[6px]"
+                      >
+                        <path
+                          d="M8 14L12 10L16 14"
+                          stroke="black"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="pl-5 pr-[58px] py-3 w-[192px] text-[#707070] poppins-medium text-xs flex items-center justify-between border-b"
+                    >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >LAGOS</span
+                      >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >45</span
+                      >
+                    </div>
+                    <div
+                      class="pl-5 pr-[58px] py-3 w-[192px] text-[#707070] poppins-medium text-xs flex items-center justify-between border-b"
+                    >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >ABUJA</span
+                      >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >12</span
+                      >
+                    </div>
+                    <div
+                      class="pl-5 pr-[58px] py-3 w-[192px] text-[#707070] poppins-medium text-xs flex items-center justify-between border-b"
+                    >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >RIVERS</span
+                      >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >47</span
+                      >
+                    </div>
+                    <div
+                      class="pl-5 pr-[58px] py-3 w-[192px] text-[#707070] poppins-medium text-xs flex items-center justify-between border-b"
+                    >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >AKWA IBOM</span
+                      >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >88</span
+                      >
+                    </div>
+                    <div
+                      class="pl-5 pr-[58px] py-3 w-[192px] text-[#707070] poppins-medium text-xs flex items-center justify-between"
+                    >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >KANO</span
+                      >
+                      <span class="text-[#707070] poppins-medium text-xs"
+                        >5</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="w-[50%] mx-auto bg-[url('./images/map.png')] bg-no-repeat bg-center bg-contain"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 mt-5">
+          <div class="bg-white rounded-[20px] shadow-cardShadow p-5">
+            <p class="poppins-semibold text-sm">Trends</p>
+            <div class="flex items-center mt-6 gap-5 flex-wrap">
+              <div class="flex items-center gap-[10px]">
+                <div
+                  class="relative ml-3 w-[13px] h-[13px] rounded-full bg-[#FF0000]"
+                >
+                  <div
+                    class="absolute -right-[8px] top-[35%] h-1 w-[30px] bg-[#FF0000]"
+                  ></div>
+                </div>
+                <p class="font-segoeSemibold text-sm text-[#0D131E]">Pnl</p>
+              </div>
+              <div class="flex items-center gap-[10px]">
+                <div class="w-[18px] h-[18px] rounded-[4px] bg-[#B7BDE2]"></div>
+                <p class="font-segoeSemibold text-sm text-[#0D131E]">Volume</p>
+              </div>
+              <div class="flex items-center gap-[10px]">
+                <div
+                  class="relative ml-3 w-[13px] h-[13px] rounded-full bg-[#037B93]"
+                >
+                  <div
+                    class="absolute -right-[8px] top-[35%] h-1 w-[30px] bg-[#037B93]"
+                  ></div>
+                </div>
+                <p class="font-segoeSemibold text-sm text-[#0D131E]">Deposit</p>
+              </div>
+              <div class="flex items-center gap-[10px]">
+                <div
+                  class="relative ml-3 w-[13px] h-[13px] rounded-full bg-[#FAAA40]"
+                >
+                  <div
+                    class="absolute -right-[8px] top-[35%] h-1 w-[30px] bg-[#FAAA40]"
+                  ></div>
+                </div>
+                <p class="font-segoeSemibold text-sm text-[#0D131E]">
+                  Withdrawals
+                </p>
+              </div>
+              <div class="flex items-center gap-[10px]">
+                <div class="w-[18px] h-[18px] rounded-[4px] bg-[#B3E9F5]"></div>
+                <p class="font-segoeSemibold text-sm text-[#0D131E]">
+                  Sign ups
+                </p>
+              </div>
+            </div>
+            <div class="mt-4">
+              <canvas
+                style="height: 293px; max-width: 100%; max-height: 293px"
+                id="trends-chart"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      var config = {
+        type: "funnel",
+        data: {
+          labels: [
+            "Visits",
+            "Unique Visits",
+            "Sign ups",
+            "FTD's",
+            "Self FTD's",
+          ],
+          datasets: [
+            {
+              data: [5175, 6412, 7458, 8345, 8345],
+              backgroundColor: [
+                "#3B42F0",
+                "#F05E78",
+                "#ACEAF4",
+                "#4FD66E",
+                "#7C35AB",
+              ],
+              hoverBackgroundColor: [
+                "#3B42F0",
+                "#F05E78",
+                "#ACEAF4",
+                "#4FD66E",
+                "#7C35AB",
+              ],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          sort: "desc",
+          legend: {
+            position: "right",
+          },
+          title: {
+            display: false,
+            text: "Data",
+          },
+          animation: {
+            animateScale: true,
+            animateRotate: true,
+          },
+        },
+      };
+
+      // Get the canvas element
+      const ctx = document.getElementById("funnelChart").getContext("2d");
+
+      // Create the funnel chart
+      const funnelChart = new Chart(ctx, config);
+
+      const trendsData = [
+        { year: 2010, count: 10 },
+        { year: 2011, count: 20 },
+        { year: 2012, count: 15 },
+        { year: 2013, count: 14 },
+        { year: 2014, count: 16 },
+        { year: 2015, count: 20 },
+        { year: 2016, count: 20 },
+      ];
+
+      const trendsData2 = [
+        { year: 2010, count: 18 },
+        { year: 2011, count: 19 },
+        { year: 2012, count: 12 },
+        { year: 2013, count: 19 },
+        { year: 2014, count: 16 },
+        { year: 2015, count: 20 },
+        { year: 2016, count: 18 },
+      ];
+
+      new Chart(document.getElementById("trends-chart"), {
+        type: "line",
+        options: {
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+        data: {
+          labels: trendsData.map((row) => row.year),
+          datasets: [
+            {
+              label: "Withdrawal",
+              data: trendsData.map((row) => row.count),
+              borderColor: "#36A2EB",
+              backgroundColor: "transparent",
+            },
+            {
+              label: "Deposits",
+              data: trendsData2.map((row) => row.count),
+              borderColor: "#ff0000",
+              backgroundColor: "transparent",
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>
